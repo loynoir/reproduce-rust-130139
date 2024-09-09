@@ -1,0 +1,12 @@
+[build]
+target-dir = "build/target"
+
+[profile.release]
+debug = false
+strip = true
+opt-level = 3
+lto = true
+codegen-units = 1
+
+[profile.x-release-test]
+inherits = "release"

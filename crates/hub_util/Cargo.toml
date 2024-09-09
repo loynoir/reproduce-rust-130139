@@ -1,0 +1,17 @@
+[package]
+name = "hub_util"
+version = "0.1.0"
+edition.workspace = true
+
+[dependencies]
+foo_util = { workspace = true, optional = true }
+bar_util = { workspace = true, optional = true }
+
+[features]
+default = [
+    "foo_util/bar_util",
+    "bar_util",
+]
+
+foo_util = ["dep:foo_util"]
+bar_util = ["dep:bar_util"]

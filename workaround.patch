@@ -1,0 +1,43 @@
+diff --git a/crates/bar_util/src/lib.rs b/crates/bar_util/src/lib.rs
+index c20b3e1..9bc14a3 100644
+--- a/crates/bar_util/src/lib.rs
++++ b/crates/bar_util/src/lib.rs
+@@ -1,4 +1,4 @@
+-pub use bar::Bar;
++pub use bar::{Bar, bar_get_i32};
+ 
+ mod bar {
+     pub struct Bar<T>(T);
+@@ -8,8 +8,12 @@ mod bar {
+             Bar(value)
+         }
+ 
+-        pub const fn get(&self) -> i32 {
++        pub fn get(&self) -> i32 {
+             self.0
+         }
+     }
++
++    pub fn bar_get_i32(bar: &Bar<i32>) -> i32 {
++        bar.0
++    }
+ }
+diff --git a/crates/foo_util/src/lib.rs b/crates/foo_util/src/lib.rs
+index f9db97c..cc52d57 100644
+--- a/crates/foo_util/src/lib.rs
++++ b/crates/foo_util/src/lib.rs
+@@ -4,12 +4,13 @@ pub fn f2() {}
+ 
+ #[cfg(test)]
+ mod tests {
+-    use bar_util::Bar;
++    use bar_util::{Bar, bar_get_i32};
+ 
+     #[test]
+     fn should_ok() {
+         let x = unsafe { Bar::from_unchecked(42) };
+ 
+         let _ = x.get();
++        let _ = bar_get_i32(&x);
+     }
+ }

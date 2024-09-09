@@ -1,0 +1,16 @@
+[workspace.package]
+edition = "2021"
+
+[workspace]
+resolver = "2"
+
+members = [
+    "crates/foo_util",
+    "crates/bar_util",
+    "crates/hub_util",
+]
+
+[workspace.dependencies]
+foo_util = { path = "crates/foo_util", default-features = false }
+bar_util = { path = "crates/bar_util", default-features = false }
+hub_util = { path = "crates/hub_util", default-features = false }

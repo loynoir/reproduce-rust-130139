@@ -1,0 +1,11 @@
+[package]
+name = "foo_util"
+version = "0.1.0"
+edition.workspace = true
+
+[dependencies]
+bar_util = { workspace = true, optional = true }
+
+[features]
+default = ["bar_util"]
+bar_util = ["dep:bar_util"]
